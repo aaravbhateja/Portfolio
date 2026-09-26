@@ -750,23 +750,13 @@ main {
 
 .clients-item img {
   width: 100%;
+  border-radius: 14px;
   filter: grayscale(1);
   transition: var(--transition-1);
 }
 
 .clients-item img:hover { filter: grayscale(0); }
 
-.client-name {
-  display: block;
-  padding: 20px 10px;
-  text-align: center;
-  font-size: var(--fs-3);
-  font-weight: var(--fw-500);
-  color: var(--light-gray);
-  transition: var(--transition-1);
-}
-
-.client-name:hover { color: var(--orange-yellow-crayola); }
 
 
 
