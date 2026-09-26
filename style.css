@@ -728,34 +728,67 @@ main {
 
 .clients { margin-bottom: 15px; }
 
-.clients-list {
+.clients-marquee {
+  overflow: hidden;
+  padding: 20px 0 10px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.clients-track {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 15px;
-  margin: 0 -15px;
-  padding: 25px;
-  padding-bottom: 25px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-  scroll-padding-inline: 25px;
+  gap: 16px;
+  width: max-content;
+  animation: clients-scroll 30s linear infinite;
 }
 
-.clients-item {
-  min-width: 50%;
-  scroll-snap-align: start;
+.clients-marquee:hover .clients-track { animation-play-state: paused; }
+
+@keyframes clients-scroll {
+  to { transform: translateX(calc(-100% / 3 - 16px / 3)); }
 }
 
-.clients-item img {
-  width: 100%;
+.clients-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 170px;
+  padding: 22px 16px 16px;
+  background: var(--eerie-black-1);
+  border: 1px solid var(--jet);
   border-radius: 14px;
-  filter: grayscale(1);
   transition: var(--transition-1);
 }
 
-.clients-item img:hover { filter: grayscale(0); }
+.clients-item a:hover { border-color: var(--orange-yellow-crayola); transform: translateY(-3px); }
+
+.client-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 74px;
+  height: 74px;
+  padding: 8px;
+  background: hsl(0, 0%, 100%);
+  border-radius: 12px;
+}
+
+.client-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.client-label {
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-track { animation: none; }
+  .clients-marquee { overflow-x: auto; }
+}
 
 
 
@@ -1237,11 +1270,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 @media (min-width: 450px) {
 
-  /**
-   * client
-   */
-
-  .clients-item { min-width: calc(33.33% - 10px); }
 
 
 
@@ -1473,16 +1501,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: 35px;
   }
 
-  /* clients */
-
-  .clients-list {
-    gap: 50px;
-    margin: 0 -30px;
-    padding: 45px;
-    scroll-padding-inline: 45px;
-  }
-
-  .clients-item { min-width: calc(33.33% - 35px); }
 
 
 
@@ -1736,9 +1754,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .testimonials-item { min-width: calc(50% - 15px); }
 
-  /* clients */
-
-  .clients-item { min-width: calc(25% - 38px); }
 
 
 
